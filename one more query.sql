@@ -1,0 +1,1 @@
+select * from production where supply in(select max(supply) from production group by goods_id);

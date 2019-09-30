@@ -1,0 +1,68 @@
+drop table Services;
+drop table Consumer;
+drop table Production;
+drop table total_supply;
+drop table Goods;
+drop table Person;
+drop table Family;
+
+
+
+
+
+
+create table Family(
+	family_id integer,
+	total_member integer,
+	educated_member integer,
+	religion varchar(20),
+	phone_no number(11) unique,
+	primary key(family_id)
+	);
+
+
+
+create table Person(
+	id integer,
+	name varchar(30),
+	age integer,
+	gender varchar(10),
+	profession varchar(40),
+	income integer ,
+	family_id integer,
+	primary key(id),
+	foreign key(family_id) references Family(family_id)
+	);
+
+create table Goods(
+ goods_id integer ,
+ goods_name varchar(100 ),
+ price integer ,
+ primary key(goods_id)
+);
+
+create table Production(
+	family_id integer,
+	goods_id integer,
+	supply  integer,
+	foreign key(family_id) references Family(family_id),
+	foreign key(goods_id) references Goods(goods_id)
+	);
+
+
+create table Consumer(
+	family_id integer,
+	goods_id integer,
+	demand integer,
+	foreign key(family_id) references Family(family_id),
+	foreign key(goods_id) references Goods(goods_id)
+	);
+	
+
+create table total_supply(
+goods_id integer,
+total_supply integer default 0,
+foreign key(goods_id) references Goods(goods_id)
+);
+
+	

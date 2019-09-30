@@ -1,0 +1,1 @@
+ select sum(demand) , goods_id from consumer group by goods_id;
